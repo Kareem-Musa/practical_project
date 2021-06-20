@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block content %}
+    <h2 class="px-10 py-3 text-xl shadow-xl">{{ header }}</h2>
+    <hr class="my-3 dark:border-gray-900" />
+    <a class="px-5 py-1 ml-10 bg-blue-400 border rounded-lg shadow-xl text-blue-10" href="{% url 'locations:add_locality' %}">أضافة جديد</a>
+    {% if localities %}
+       
+        {% for locality in localities %}
+            <div class="flex justify-between px-10 py-4 mt-3 bg-gray-100 border rounded-lg shadowlg">
+                <div class="">
+                    <span class="ml-10">{{ locality.id }} - </span><span class="ml-10">{{ locality.name }}</span>
+                    <span>(ولاية)  - {{ locality.state.name }}</span>
+                </div>
+                <div>
+                    <a class="px-5 py-1 ml-10 bg-blue-400 border rounded-lg shadow-xl text-blue-10" 
+                    href="{% url 'locations:update_locality' locality.id %}">
+                        <span>تعديل</span>
+                        
+                    </a>
+                    <a class="px-5 py-1 ml-10 bg-red-400 border rounded-lg shadow-xl text-red-10" href="http://">حذف</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+    {% endif %}
+{% endblock %}
